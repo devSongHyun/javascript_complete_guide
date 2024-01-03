@@ -1,6 +1,19 @@
 const button = document.querySelector("button");
 const output = document.querySelector("p");
 
+const getPosition = (opts) => {
+  const promise = new Promise((resolve, reject) => {
+    navigator.geolocation.getCurrentPosition(
+      (success) => {
+        resolve(success);
+      },
+      (error) => {},
+      opts
+    );
+  });
+  return promise;
+};
+
 const setTimer = (duration) => {
   // 내장 API를 프로미스화
   const promise = new Promise((resolve, reject) => {
@@ -12,17 +25,15 @@ const setTimer = (duration) => {
 };
 
 function trackUserHandler() {
-  navigator.geolocation.getCurrentPosition(
-    (posData) => {
-      // 바깥의 위치 구하는 콜백 함수가 실행되어야 타이머 실행
-      setTimer(2000).then((data) => {
-        console.log(data, posData);
-      });
-    },
-    (error) => {
-      console.log(error);
-    }
-  );
+  let positionData;
+  getPosition()
+    .then((posData) => {
+      positionData = posData;
+      return setTimer(2000);
+    })
+    .then((data) => {
+      console.log(data, positionData);
+    });
   // 실행 순서 - 2: 타이머는 0초이더라도 호출 스택에 존재하는 console.log가 완료되어야지만 실행할 수 있다.
   setTimer(1000).then(() => {
     console.log("Timer done!");
