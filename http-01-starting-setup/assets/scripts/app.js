@@ -6,7 +6,8 @@ const postList = document.querySelector("ul");
 
 function sendHttpRequest(method, url, data) {
   // const promise = new Promise((resolve, reject) => {
-  //   const xhr = new XMLHttpRequest();
+    // const xhr = new XMLHttpRequest();
+    // xhr.setRequestHeader('Content-Type', 'application/json');
 
   //   xhr.open(method, url);
 
@@ -31,26 +32,29 @@ function sendHttpRequest(method, url, data) {
   // return promise;
   return fetch(url, {
     method: method,
-    body: JSON.stringify(data)
-  }).then(response => {
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then((response) => {
     return response.json();
   });
 }
 
 async function fetchPosts() {
   // try {
-    const responseData = await sendHttpRequest(
-      "GET",
-      "https://jsonplaceholder.typicode.com/posts"
-    );
-    const listOfPosts = responseData;
-    for (const post of listOfPosts) {
-      const postEl = document.importNode(postTmeplate.content, true);
-      postEl.querySelector("h2").textContent = post.title.toUpperCase();
-      postEl.querySelector("p").textContent = post.body;
-      postEl.querySelector("li").id = post.id;
-      listElement.append(postEl);
-    }
+  const responseData = await sendHttpRequest(
+    "GET",
+    "https://jsonplaceholder.typicode.com/posts"
+  );
+  const listOfPosts = responseData;
+  for (const post of listOfPosts) {
+    const postEl = document.importNode(postTmeplate.content, true);
+    postEl.querySelector("h2").textContent = post.title.toUpperCase();
+    postEl.querySelector("p").textContent = post.body;
+    postEl.querySelector("li").id = post.id;
+    listElement.append(postEl);
+  }
   // } catch (error) {
   //   alert(error);
   // }
