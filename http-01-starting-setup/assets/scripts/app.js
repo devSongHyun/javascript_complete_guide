@@ -5,37 +5,40 @@ const fetchButton = document.querySelector("#available-posts button");
 const postList = document.querySelector("ul");
 
 function sendHttpRequest(method, url, data) {
-  const promise = new Promise((resolve, reject) => {
-    const xhr = new XMLHttpRequest();
+  // const promise = new Promise((resolve, reject) => {
+  //   const xhr = new XMLHttpRequest();
 
-    xhr.open(method, url);
+  //   xhr.open(method, url);
 
-    xhr.responseType = "json";
+  //   xhr.responseType = "json";
 
-    xhr.onload = function () {
-      if (xhr.status >= 200 && xhr.status < 300) {
-        resolve(xhr.response);
-      } else {
-        reject(new Error("Something went wrong!"));
-      }
-      // const listOfPosts = JSON.parse(xhr.response);
-    };
+  //   xhr.onload = function () {
+  //     if (xhr.status >= 200 && xhr.status < 300) {
+  //       resolve(xhr.response);
+  //     } else {
+  //       reject(new Error("Something went wrong!"));
+  //     }
+  //     // const listOfPosts = JSON.parse(xhr.response);
+  //   };
 
-    // 요청 전송에 실패했을 때만 발생
-    xhr.onerror = function () {
-      reject(new Error("Failed to send request!"));
-    };
+  //   // 요청 전송에 실패했을 때만 발생
+  //   xhr.onerror = function () {
+  //     reject(new Error("Failed to send request!"));
+  //   };
 
-    xhr.send(JSON.stringify(data));
+  //   xhr.send(JSON.stringify(data));
+  // });
+  // return promise;
+  return fetch(url).then(response => {
+    return response.json();
   });
-  return promise;
 }
 
 async function fetchPosts() {
-  try {
+  // try {
     const responseData = await sendHttpRequest(
       "GET",
-      "https://jsonplaceholder.typicode.com/pos"
+      "https://jsonplaceholder.typicode.com/posts"
     );
     const listOfPosts = responseData;
     for (const post of listOfPosts) {
@@ -45,9 +48,9 @@ async function fetchPosts() {
       postEl.querySelector("li").id = post.id;
       listElement.append(postEl);
     }
-  } catch (error) {
-    alert(error);
-  }
+  // } catch (error) {
+  //   alert(error);
+  // }
 }
 
 async function createPost(title, content) {
