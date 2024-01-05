@@ -32,10 +32,11 @@ function sendHttpRequest(method, url, data) {
   // return promise;
   return fetch(url, {
     method: method,
-    body: JSON.stringify(data),
-    headers: {
-      "Content-Type": "application/json",
-    },
+    // body: JSON.stringify(data),
+    body: data,
+    // headers: {
+    //   "Content-Type": "application/json",
+    // },
   })
     .then((response) => {
       if (response.status >= 200 && response.status < 300) {
@@ -80,7 +81,18 @@ async function createPost(title, content) {
     userId: userId,
   };
 
-  sendHttpRequest("POST", "https://jsonplaceholder.typicode.com/posts", post);
+  const fd = new FormData(form);
+  // 간단히 세번째 인자로 파일도 전송할 수 있다.
+  // fd.append("title", title);
+  // fd.append("body", content);
+  fd.append("userId", userId);
+
+  sendHttpRequest(
+    "POST",
+    "https://jsonplaceholder.typicode.com/posts",
+    post,
+    fd
+  );
 }
 
 fetchButton.addEventListener("click", fetchPosts);
