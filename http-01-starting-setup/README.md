@@ -115,3 +115,18 @@ return fetch(url, {
     	// form 요소에 없는 name값도 append로 추가할 수 있다.
       fd.append("userId", userId);
     ```
+## Axios
+
+- node.js와 브라우저를 위한 *[Promise 기반](https://javascript.info/promise-basics)* HTTP 클라이언트
+- 서버 사이드에서는 네이티브 node.js의 `http` 모듈을 사용하고, 클라이언트(브라우저)에서는 XMLHttpRequests를 사용
+- response한 객체는 fetch API와는 달리 바로 사용할 수 있는 `data` 객체가 들어있다.
+- 결과적으로 성공이지만 오류 상태 코드를 반환하는 응답도 `catch` 블록으로 잡아낼 수 있다.
+- 넣어주는 데이터 형식에 따라 헤더를 알아서 추가해주고, JSON 객체로 알아서 변환해준다.
+
+## 제3자 라이브러리 고려
+
+- 내가 사용하지 않는 기능까지 전부 다운로드 되어 오버헤드가 발생할 수 있다.
+    
+    👉일부만 임포트할 수 있는 방법은 존재
+    
+- 버그나 보안 이슈 등 활발하게 업데이트 되는 라이브러리를 권장
