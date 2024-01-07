@@ -1,7 +1,7 @@
 import { ProjectItem as PrjItem } from './ProjectItem.js';
 import * as DOMH from '../Utility/DOMHelper.js';
 
-const ProjectItem = 'abc';
+// const ProjectItem = 'abc';
 
 // console.log(DEFAULT_VALUE);
 
@@ -11,6 +11,7 @@ export class ProjectList {
   constructor(type) {
     this.type = type;
     const prjItems = document.querySelectorAll(`#${type}-projects li`);
+
     for (const prjItem of prjItems) {
       this.projects.push(
         new PrjItem(prjItem.id, this.switchProject.bind(this), this.type)
@@ -45,6 +46,7 @@ export class ProjectList {
 
     list.addEventListener('drop', event => {
       const prjId = event.dataTransfer.getData('text/plain');
+
       if (this.projects.find(p => p.id === prjId)) {
         return;
       }

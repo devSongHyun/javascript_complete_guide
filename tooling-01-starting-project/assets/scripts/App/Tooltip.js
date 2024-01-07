@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import Cmp, { doSomething } from './Component.js';
 
 console.log('Tooltip running');
@@ -17,9 +18,11 @@ export class Tooltip extends Cmp {
 
   create() {
     const tooltipElement = document.createElement('div');
+
     tooltipElement.className = 'card';
     const tooltipTemplate = document.getElementById('tooltip');
     const tooltipBody = document.importNode(tooltipTemplate.content, true);
+
     tooltipBody.querySelector('p').textContent = this.text;
     tooltipElement.append(tooltipBody);
 
