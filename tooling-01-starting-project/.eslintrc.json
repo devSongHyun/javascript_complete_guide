@@ -14,6 +14,7 @@
     "quotes": ["error", "single"],
     "semi": ["error", "always"],
     "newline-after-var": ["error", "always"],
-    "no-console": "off"
+    "no-console": "off",
+    "no-undef": "off"
   }
 }

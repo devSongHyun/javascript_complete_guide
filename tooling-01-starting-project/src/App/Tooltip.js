@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import Cmp, { doSomething } from './Component.js';
+import Cmp, { doSomething } from './Component';
 
 console.log('Tooltip running');
 
@@ -8,13 +8,12 @@ export class Tooltip extends Cmp {
     super(hostElementId);
     this.closeNotifier = closeNotifierFunction;
     this.text = text;
+    this.closeTooltip = () => {
+      this.detach();
+      this.closeNotifier();
+    };
     this.create();
   }
-
-  closeTooltip = () => {
-    this.detach();
-    this.closeNotifier();
-  };
 
   create() {
     const tooltipElement = document.createElement('div');

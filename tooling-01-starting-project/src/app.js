@@ -1,4 +1,4 @@
-import { ProjectList } from './App/ProjectList.js';
+import { ProjectList } from './App/ProjectList';
 
 globalThis.DEFAULT_VALUE = 'MAX';
 
