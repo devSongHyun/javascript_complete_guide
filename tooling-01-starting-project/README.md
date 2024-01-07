@@ -79,5 +79,3 @@ npm run build:dev
     		...
     }
     ```
-    
-    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/9bab7ae3-3494-4a1b-abd1-80ae98c8af73/2b97cca0-5d00-405a-ba3a-cdf96c520882/Untitled.png)
