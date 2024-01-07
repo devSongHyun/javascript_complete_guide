@@ -1,4 +1,7 @@
-export class Component {
+export function domDomething() {};
+
+// 기본으로 내보내면 자바스크립트는 이름을 무시
+export default class {
   constructor(hostElementId, insertBefore = false) {
     if (hostElementId) {
       this.hostElement = document.getElementById(hostElementId);
