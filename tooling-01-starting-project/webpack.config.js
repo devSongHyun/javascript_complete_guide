@@ -1,4 +1,5 @@
 const path = require('path');
+const CleanPlugin = require('clean-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -8,8 +9,11 @@ module.exports = {
     path: path.resolve(__dirname, 'assets', 'scripts'), // __dirname: 현재 경로에 대한 액세스
     publicPath: 'assets/scripts/'
   },
-  devtool: 'cheap-module-eval-source-map'
+  devtool: 'cheap-module-eval-source-map',
   // devServer: {
   //   contentBase: './'
   // }
+  plugins: [
+    new CleanPlugin.CleanWebpackPlugin()
+  ]
 };
