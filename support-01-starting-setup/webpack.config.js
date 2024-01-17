@@ -21,13 +21,16 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env']
+            presets: [
+              [
+                '@babel/preset-env',
+                { useBuiltIns: 'usage', corejs: { version: 3 } }
+              ]
+            ]
           }
         }
       }
     ]
   },
-  plugins: [
-    new CleanPlugin.CleanWebpackPlugin()
-  ]
+  plugins: [new CleanPlugin.CleanWebpackPlugin()]
 };
