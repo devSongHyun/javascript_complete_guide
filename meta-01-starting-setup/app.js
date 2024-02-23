@@ -71,3 +71,21 @@ console.log([...company])
 // console.log(it.next());
 // console.log(it.next());
 // console.log(it.next());
+
+const course = {
+  title: "JavaScript - The Complete Guide"
+}
+
+Reflect.setPrototypeOf(course, {
+  toString() {
+    return this.title;
+  }
+});
+
+Reflect.deleteProperty(course, "title");
+
+// Object.deleteProperty(course, 'title'); 존재하지 않는 함수
+
+// delete course.title;
+
+console.log(course);
