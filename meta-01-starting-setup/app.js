@@ -97,10 +97,17 @@ const courseHandler = {
       return 0;
     }
     return obj[propertyName] || "NOT FOUND";
+  },
+  set(obj, propertyName, newValue) {
+    if (propertyName === "rating") {
+      return;
+    }
+    obj[propertyName] = newValue;
   }
 };
 
 // course 객체를 다른 객체로 래핑
 const pCourse = new Proxy(course, courseHandler);
+pCourse.rating = 5;
 console.log(pCourse.title);
 console.log(course, pCourse, pCourse.length, pCourse.rating);
