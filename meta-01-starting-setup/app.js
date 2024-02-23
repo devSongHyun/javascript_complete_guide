@@ -82,10 +82,25 @@ Reflect.setPrototypeOf(course, {
   }
 });
 
-Reflect.deleteProperty(course, "title");
+// Reflect.deleteProperty(course, "title");
 
 // Object.deleteProperty(course, 'title'); 존재하지 않는 함수
 
 // delete course.title;
 
 console.log(course);
+
+const courseHandler = {
+  get(obj, propertyName) {
+    console.log(propertyName);
+    if (propertyName === "length") {
+      return 0;
+    }
+    return obj[propertyName] || "NOT FOUND";
+  }
+};
+
+// course 객체를 다른 객체로 래핑
+const pCourse = new Proxy(course, courseHandler);
+console.log(pCourse.title);
+console.log(course, pCourse, pCourse.length, pCourse.rating);
