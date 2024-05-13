@@ -12,7 +12,7 @@ const server = http.createServer((request, response) => {
     if (body) {
       userName = body.split("=")[1];
     }
-    response.setHeader("Content-TYpe", "text/html");
+    response.setHeader("Content-Type", "text/html");
     response.write(
       `<h1>Hi ${userName}</h1><form method="POST" action="/"><input name="username" type="text"><button type="submit">Send</button></form>`
     );
