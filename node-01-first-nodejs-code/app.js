@@ -10,6 +10,12 @@ const app = express();
 
 app.use(bodyParser.json());
 
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-allow-Origin', '*');
+  res.setHeader('Access-Control-allow-Method', 'POST, GET, OPTIONS');
+  res.setHeader('Access-Control-allow-Headers', 'Content-Type');
+});
+
 app.use(locationsRoutes);
 
 // app.use((req, res, next) => {
