@@ -50,15 +50,13 @@ class PlaceFinder {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        const locationId = data.locId;
+        this.shareBtn.disabled = false;
+        const sharedLinkInputElement = document.getElementById("share-link");
+        sharedLinkInputElement.value = `${
+          location.origin
+        }/my-place?location=${locationId}`;
       });
-    this.shareBtn.disabled = false;
-    const sharedLinkInputElement = document.getElementById("share-link");
-    sharedLinkInputElement.value = `${
-      location.origin
-    }/my-place?address=${encodeURI(address)}&lat=${coordinates.lat}&lng=${
-      coordinates.lng
-    }`;
   }
 
   locateUserHandler() {

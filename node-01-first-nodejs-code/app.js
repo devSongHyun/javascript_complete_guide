@@ -14,6 +14,7 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-allow-Origin', '*');
   res.setHeader('Access-Control-allow-Method', 'POST, GET, OPTIONS');
   res.setHeader('Access-Control-allow-Headers', 'Content-Type');
+  next();
 });
 
 app.use(locationsRoutes);
