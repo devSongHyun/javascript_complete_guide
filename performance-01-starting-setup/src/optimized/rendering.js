@@ -3,7 +3,7 @@ const productListEl = document.getElementById('product-list');
 function createElement(product, prodId, deleteProductFn) {
   const newListEl = document.createElement('li');
   newListEl.innerHTML = `
-    <h2>${product.tile}</h2>
+    <h2>${product.title}</h2>
     <p>${product.price}</p>
   `;
   const prodDeleteButtonEl = document.createElement('button');
@@ -15,9 +15,6 @@ function createElement(product, prodId, deleteProductFn) {
     'click',
     deleteProductFn.bind(null, prodId)
   );
-
-  newListEl.appendChild(prodTitleEl);
-  newListEl.appendChild(prodPriceEl);
   newListEl.appendChild(prodDeleteButtonEl);
 
   return newListEl;
